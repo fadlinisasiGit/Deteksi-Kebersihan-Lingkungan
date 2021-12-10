@@ -1,37 +1,32 @@
-# Laporan Proyek Machine Learning - Muhammad Fadli Ramadhan
+# Laporan Proyek Machine Learning - Sistem Deteksi Kebersihan Lingkungan (Capstone Project)
 
 ## Project Overview
 
-Domain proyek yang saya pilih dalam proyek Machine Learning Sistem Rekomendasi ini adalah mengenai Tempat Kuliner dengan judul "Recommend top restaurants based on preference".
-
-Menurut [Wikipedia](https://id.wikipedia.org/wiki/Rumah_makan), **Rumah makan** atau **restoran** adalah istilah umum untuk menyebut usaha gastronomi yang menyajikan hidangan kepada masyarakat dan menyediakan tempat untuk menikmati hidangan tersebut serta menetapkan tarif tertentu untuk makanan dan pelayanannya. Meski pada umumnya rumah makan menyajikan makanan di tempat, tetapi ada juga beberapa yang menyediakan layanan take-out dining dan delivery service sebagai salah satu bentuk pelayanan kepada konsumennya. Rumah makan biasanya memiliki spesialisasi dalam jenis makanan yang dihidangkannya. Sebagai contoh yaitu rumah makan chinese food, rumah makan Padang, rumah makan cepat saji (fast food restaurant) dan sebagainya. Di Indonesia, rumah makan juga biasa disebut dengan istilah restoran. Restoran merupakan kata resapan yang berasal dari bahasa Prancis yang diadaptasi oleh bahasa inggris; "restaurant" yang berasal dari kata "restaurer" yang berarti "memulihkan"
-
-[Sistem Rekomendasi](https://en.wikipedia.org/wiki/Recommender_system)  adalah subkelas sistem penyaringan informasi yang berupaya memprediksi "peringkat" atau "preferensi" yang akan diberikan pengguna pada suatu item.
-Sistem pemberi rekomendasi digunakan di berbagai bidang, dengan contoh yang umum dikenal berupa generator daftar putar untuk layanan video dan musik, pemberi rekomendasi produk untuk toko online, atau pemberi rekomendasi konten untuk platform media sosial dan pemberi rekomendasi konten web terbuka.
-
-Proyek ini penting untuk diselesaikan agar Pelanggan atau User mendapatkan rekomendasi restoran dengan penilaian terbaik dan memberikan banyak pilihan untuk memilih restoran dengan ID yang tersedia. Dari pihak restoran, sistem pemberi rekomendasi ini sangat penting untuk mengingkatkan kualitas restoran dan meningkatkan jumlah pelanggan.
+Semakin hari semakin berkurangnya kesadaran manusia akan kebersihan. Hal ini ditandai dengan banyaknya tempat berisi tumpukan sampah yang membuat lingkungan tidak enak dilihat. Sudah seharusnya masyarakat memiliki kesadaran untuk membersihkan lingkungan sekitarnya. Maka dari itu, dengan memanfaatkan machine learning kami membuat mesin pendeteksi kebersihan lingkungan dengan mengidentifikasi gambar masukan guna mengingatkan masyarakat pentingnya menjaga kebersihan lingkungan sekitar. 
+Dalam proyek ini kami memilih tema “Sampah dan Polusi” dengan judul “Website Pendeteksi Kebersihan Lingkungan”. Kami membuat model machine learning untuk image classification yang dapat mendeteksi sebuah gambar masukan apakah termasuk ke dalam kategori lingkungan bersih atau kotor. Kemudian dikembangkan dalam sebuah website guna memudahkan user dalam penggunaannya di dunia nyata.
+User akan mengakses website kemudian telah menyiapkan sebuah gambar yang akan di upload untuk di deteksi bagaimana keadaan lingkungan nya. Hasil dari proses deteksi tersebut adalah sebuah pernyataan dan beberapa saran. Jika gambar yang dimasukan memiliki hasil “Bersih” maka akan muncul pop up tips menjaga kebersihan lingkungan. Sementara jika gambar yang dimasukan memiliki hasil “Kotor” maka akan muncul pop up cara dan motivasi untuk membersihkan lingkungan tersebut.
 
 
 ## Business Understanding
 
 ### Problem Statements
 
-Sebagai data analyst, anda ingin memanfaatkan data tersebut untuk meningkatkan kualitas layanan dan rating perusahaan. Namun, anda memiliki rincian masalah berikut :
-- Bagaimana membuat model machine learning untuk merekomendasikan ID restoran berdasarkan rating/penilaian tertinggi User ?
-- Bagaimana cara membuat model Machine Learning untuk merekomendasikan ID restoran lain yang mungkin disukai dan belum pernah dikunjungi oleh user?
+Berikut adalah problem statement dari proyek ini :
+
+- Bagaimana user dapat mengidentifikasi kebersihan lingkungan mereka ?
+- Bagaimana cara agar potret lingkungan yang diunggah user dapat diidentifikasi sehingga user dapat mengetahui kondisi kebersihan lingkungan mereka ? 
+
 
 ### Goals
 
-Berdasarkan rincian masalah diatas, berikut adalah tujuan proyek ini:
-- Membuat model Machine learning yang dapat merekomendasikan ID restoran berdasarkan penilaian tertinggi user dengan teknik *Popularity based Recomender Model* agar mendapatkan rekomendasi ID restoran dengan popularitas tertinggi.
-- Membuat model Machine Learning untuk merekomendasikan ID restoran lain yang mungkin disukai dan belum pernah dikunjungi oleh user dengan teknik Collaborative Filtering : SDV.
+Berdasarkan problem statement diatas, berikut adalah tujuan proyek ini:
+- Membuat model machine learning yang dapat mengklasifikasi gambar.
+- Membuat model machine learning yang bisa memprediksi hasil identifikasi gambar yang diunggah user.
 
 ### Solution statements
 
-Untuk menyelesaikan masalah ini, saya mengajukan 2 solusi approach (algoritma atau pendekatan sistem rekomendasi). yaitu teknik Popularity based Recommender Model
-Collaborative Filtering Model. Berikut adalah penjelasan teknik-teknik yang akan digunakan untuk masalah ini :
-- **Popularity based Recommender Model :** Seperti namanya, ini merekomendasikan berdasarkan apa yang sedang tren/populer di seluruh situs. Ini sangat berguna ketika Anda tidak memiliki data masa lalu sebagai referensi untuk merekomendasikan produk kepada pengguna. Ini tidak cocok untuk kelompok penonton atau film tertentu.
-- **Collaborative Filtering :** Pada tahap ini, sistem merekomendasikan sejumlah restoran berdasarkan rating yang telah diberikan sebelumnya. Dari data rating pengguna, kita akan mengidentifikasi restoran-restoran yang mirip dan belum pernah dikunjungi oleh pengguna untuk direkomendasikan. Teknik ini menggunakan model based collaborative filtering : SVD (Singular Value Decomposition)
+Untuk menyelesaikan masalah ini, saya menggunakan teknik penyelesaian masalah klasifikasi, yaitu Binary Classification. Berikut adalah penjelasan teknik-teknik yang akan digunakan untuk masalah ini :
+- **Binary Classification :** Klasifikasi biner mengacu pada memprediksi satu dari dua kelas dan klasifikasi multi-kelas melibatkan memprediksi satu dari lebih dari dua kelas. Tugas klasifikasi biner untuk mengklasifikasikan elemen-elemen himpunan menjadi dua kelompok berdasarkan aturan klasifikasi.
 
 ## Data Understanding
 ![image](https://github.com/fadlinisasiGit/Laporan-Proyek-Machine-Learning-2/blob/main/DataUnderstanding1.png?raw=true)
